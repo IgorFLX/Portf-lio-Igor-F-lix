@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Portfólio de Igor Félix: dados, automação e desenvolvimento. Projetos, habilidades, trajetória e contato.">
+<meta name="theme-color" content="#040717">
 <meta property="og:title" content="Portfólio de Igor Félix">
 <meta property="og:description" content="Dados, automação e desenvolvimento. Projetos, habilidades, trajetória e contato.">
 <meta property="og:type" content="website">
@@ -442,18 +443,83 @@ h2 { font-size: clamp(1.7rem, 4.4vw, 3.4rem); }
 .cert::backdrop { background: rgba(5, 9, 32, .82); }
 .cert img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .cert .btn { margin-top: .9rem; }
+
+/* ===== Tema escuro tecnológico: visual único, igual em qualquer tema do aparelho ===== */
+:root, :root[data-theme="light"], :root[data-theme="dark"] {
+  --bg: #040717; --bg-glass: rgba(4, 7, 23, .72); --fg: #F2F4FF; --muted: #A3ACCF; --line: #1B2556;
+  --surface: #0A1030; --accent-text: #9FB3FF; --meter: #B9FC01; --grid: rgba(159, 179, 255, .055);
+  color-scheme: dark;
+}
+html { scrollbar-color: #0131CD #040717; scrollbar-width: thin; }
+::selection { background: #B9FC01; color: #0A1238; }
+main, footer { position: relative; z-index: 1; }
+.space { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.aurora { position: fixed; z-index: 0; width: 46rem; height: 46rem; border-radius: 50%; filter: blur(110px); opacity: .34; pointer-events: none; }
+.aurora.a1 { left: -18rem; top: 8rem; background: #0131CD; animation: drift1 26s ease-in-out infinite alternate; }
+.aurora.a2 { right: -22rem; top: 55vh; background: #1D3A8F; opacity: .3; animation: drift2 32s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate(14rem, 18rem) scale(1.15); } }
+@keyframes drift2 { to { transform: translate(-16rem, -14rem) scale(.9); } }
+.ring { position: fixed; left: 0; top: 0; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1.5px solid #B9FC01; border-radius: 50%; pointer-events: none; z-index: 13; opacity: 0;
+  transition: opacity .3s, width .25s var(--ease), height .25s var(--ease), margin .25s var(--ease), background-color .25s; will-change: transform; }
+.ring.on { opacity: .9; }
+.ring.hot { width: 58px; height: 58px; margin: -29px 0 0 -29px; background: rgba(185, 252, 1, .12); }
+.glow { background: radial-gradient(circle, rgba(1, 80, 255, .22) 0%, rgba(185, 252, 1, .06) 35%, rgba(1, 49, 205, 0) 65%); }
+
+.brand span { color: var(--lime); }
+.label { color: var(--lime); }
+h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .08em; }
+.contact h2 { background: none; color: var(--on-blue); }
+.head::after { content: ""; height: 2px; width: min(14rem, 45%); background: linear-gradient(90deg, #B9FC01, rgba(185, 252, 1, 0)); transform-origin: left; transition: transform 1s var(--ease) .25s; }
+.js .head[data-reveal]:not(.in)::after { transform: scaleX(0); }
+
+.hero, .contact { box-shadow: 0 0 0 1px rgba(159, 179, 255, .3), 0 50px 140px -50px rgba(1, 60, 255, .95); animation: halo 5s ease-in-out infinite alternate; }
+@keyframes halo { to { box-shadow: 0 0 0 1px rgba(185, 252, 1, .55), 0 50px 160px -40px rgba(1, 60, 255, 1); } }
+.stats { background: var(--line); box-shadow: 0 30px 80px -50px rgba(1, 60, 255, .9); }
+.stat b { color: var(--lime); text-shadow: 0 0 28px rgba(185, 252, 1, .35); }
+.pstats b { color: var(--lime); }
+.card, .project, .skills-grid > div { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); background: rgba(10, 16, 48, .78); }
+.card:hover, .project:hover { border-color: rgba(185, 252, 1, .6); box-shadow: 0 0 0 1px rgba(185, 252, 1, .25), 0 26px 70px -28px rgba(1, 60, 255, .95); }
+.skills-grid { gap: 1.25rem; align-items: start; }
+.skills-grid > div { border: 1px solid var(--line); border-radius: 20px; padding: 1.5rem 1.5rem .75rem; transition: border-color .35s, transform .35s var(--ease); }
+.skills-grid > div:hover { border-color: rgba(185, 252, 1, .5); transform: translateY(-4px); }
+.skills-grid h3 { font-size: 1rem; color: var(--lime); }
+.levels li:last-child { border-bottom: 0; }
+.meter i.on::after { box-shadow: 0 0 10px rgba(185, 252, 1, .7); }
+.tags li { background: rgba(4, 7, 23, .6); }
+.courses li:hover { background: rgba(10, 16, 48, .9); }
+.timeline::before { transform-origin: top; transition: transform 1.4s var(--ease) .2s; background: linear-gradient(#B9FC01, #0131CD); }
+.js [data-reveal]:not(.in) .timeline::before { transform: scaleY(0); }
+.timeline li::before { background: var(--bg); }
+
+/* Entrada em cascata dos itens de cada bloco */
+.js [data-reveal].in :is(.card, .stat, .skills-grid > div, .courses li, .timeline li, .facts li, .pstats li),
+.js .stats[data-reveal].in .stat { animation: pop .75s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms + 80ms); }
+.js [data-reveal].in .feats li { animation: slideIn .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 90ms + 150ms); }
+@keyframes pop { from { opacity: 0; transform: translateY(34px) scale(.96); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-26px); } }
+:is(.card, .stat, .skills-grid > div, .courses li, .timeline li, .facts li, .pstats li, .feats li):nth-child(2) { --i: 1; }
+:is(.card, .stat, .skills-grid > div, .courses li, .timeline li, .facts li, .pstats li, .feats li):nth-child(3) { --i: 2; }
+:is(.card, .stat, .skills-grid > div, .courses li, .timeline li, .facts li, .pstats li, .feats li):nth-child(4) { --i: 3; }
+:is(.card, .stat, .skills-grid > div, .courses li, .timeline li, .facts li, .pstats li, .feats li):nth-child(5) { --i: 4; }
+:is(.courses li):nth-child(6) { --i: 5; } :is(.courses li):nth-child(7) { --i: 6; } :is(.courses li):nth-child(8) { --i: 7; } :is(.courses li):nth-child(9) { --i: 8; }
+.js [data-reveal]:not(.in) { opacity: .2; transform: translateY(40px); }
+@media (prefers-reduced-motion: reduce) { .space, .ring { display: none; } }
 </style>
 </head>
 <body>
+<canvas class="space" id="space" aria-hidden="true"></canvas>
+<div class="aurora a1" aria-hidden="true"></div>
+<div class="aurora a2" aria-hidden="true"></div>
+<div class="ring" id="ring" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
 
 <header class="top"><div class="wrap">
   <a class="brand" href="#inicio">Igor Félix<span>.</span></a>
   <nav aria-label="Seções">
+    <a href="#projetos">Projetos</a>
     <a href="#sobre">Sobre</a>
     <a href="#trabalho">Trabalho</a>
-    <a href="#projetos">Projetos</a>
     <a href="#habilidades">Habilidades</a>
     <a href="#trajetoria">Trajetória</a>
     <a href="#contato">Contato</a>
@@ -516,46 +582,6 @@ h2 { font-size: clamp(1.7rem, 4.4vw, 3.4rem); }
       <li class="stat"><b data-count="2022" data-plain="1">2022</b><span>início na logística</span></li>
     </ul>
   </div>
-
-  <section id="sobre"><div class="wrap">
-    <div class="head" data-reveal><span class="label">Sobre</span><h2>Da operação logística para a tecnologia</h2></div>
-    <div class="about" data-reveal>
-      <div class="prose">
-        <p>Trabalho com logística desde 2022 e foi no dia a dia da operação que me aproximei da tecnologia: rotinas manuais que podiam virar macro, planilhas que podiam virar indicador, dados que podiam orientar uma decisão.</p>
-        <p>Hoje atuo como Assistente Administrativo na DSV, com foco em automação de processos, dashboards e melhoria contínua, e já passei pelas áreas fiscal e financeira. Tenho certificação como Key User no sistema WMS, formação técnica em Informática pelo SENAC e curso Engenharia de Software na Universidade Anhembi Morumbi.</p>
-      </div>
-      <ul class="facts">
-        <li><span class="k">Cargo</span><span class="v">Assistente Administrativo</span></li>
-        <li><span class="k">Empresa</span><span class="v">DSV</span></li>
-        <li><span class="k">Graduação</span><span class="v">Engenharia de Software</span></li>
-        <li><span class="k">Onde</span><span class="v">Cajamar, SP</span></li>
-      </ul>
-    </div>
-  </div></section>
-
-  <section id="trabalho"><div class="wrap">
-    <div class="head" data-reveal><span class="label">Trabalho</span><h2>O que eu faço</h2></div>
-    <ul class="cards" data-reveal>
-      <li class="card">
-        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V11M10 20V4M16 20v-7M22 20H2"/></svg></span>
-        <h3>Dashboards de indicadores operacionais</h3>
-        <p>Elaboro e mantenho painéis com os KPIs da operação logística e analiso os dados para apoiar as decisões da gestão.</p>
-        <ul class="tags"><li>Power BI</li><li>Excel</li><li>Análise de dados</li><li>KPIs</li></ul>
-      </li>
-      <li class="card">
-        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
-        <h3>Automação de rotinas</h3>
-        <p>Automatizo processos repetitivos com Macros e VBA, o que reduz trabalho manual e aumenta a eficiência da operação.</p>
-        <ul class="tags"><li>Excel</li><li>Macros</li><li>VBA</li></ul>
-      </li>
-      <li class="card">
-        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
-        <h3>Dados em sistemas integrados</h3>
-        <p>Faço a entrada de dados e notas fiscais em SAP e WMS e alinho processos com clientes e áreas internas.</p>
-        <ul class="tags"><li>SAP</li><li>WMS</li><li>Key User</li></ul>
-      </li>
-    </ul>
-  </div></section>
 
   <section id="projetos"><div class="wrap">
     <div class="head" data-reveal><span class="label">Projetos</span><h2>O que eu construí</h2></div>
@@ -666,6 +692,46 @@ h2 { font-size: clamp(1.7rem, 4.4vw, 3.4rem); }
         </div>
       </article>
     </div>
+  </div></section>
+
+  <section id="sobre"><div class="wrap">
+    <div class="head" data-reveal><span class="label">Sobre</span><h2>Da operação logística para a tecnologia</h2></div>
+    <div class="about" data-reveal>
+      <div class="prose">
+        <p>Trabalho com logística desde 2022 e foi no dia a dia da operação que me aproximei da tecnologia: rotinas manuais que podiam virar macro, planilhas que podiam virar indicador, dados que podiam orientar uma decisão.</p>
+        <p>Hoje atuo como Assistente Administrativo na DSV, com foco em automação de processos, dashboards e melhoria contínua, e já passei pelas áreas fiscal e financeira. Tenho certificação como Key User no sistema WMS, formação técnica em Informática pelo SENAC e curso Engenharia de Software na Universidade Anhembi Morumbi.</p>
+      </div>
+      <ul class="facts">
+        <li><span class="k">Cargo</span><span class="v">Assistente Administrativo</span></li>
+        <li><span class="k">Empresa</span><span class="v">DSV</span></li>
+        <li><span class="k">Graduação</span><span class="v">Engenharia de Software</span></li>
+        <li><span class="k">Onde</span><span class="v">Cajamar, SP</span></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section id="trabalho"><div class="wrap">
+    <div class="head" data-reveal><span class="label">Trabalho</span><h2>O que eu faço</h2></div>
+    <ul class="cards" data-reveal>
+      <li class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20V11M10 20V4M16 20v-7M22 20H2"/></svg></span>
+        <h3>Dashboards de indicadores operacionais</h3>
+        <p>Elaboro e mantenho painéis com os KPIs da operação logística e analiso os dados para apoiar as decisões da gestão.</p>
+        <ul class="tags"><li>Power BI</li><li>Excel</li><li>Análise de dados</li><li>KPIs</li></ul>
+      </li>
+      <li class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+        <h3>Automação de rotinas</h3>
+        <p>Automatizo processos repetitivos com Macros e VBA, o que reduz trabalho manual e aumenta a eficiência da operação.</p>
+        <ul class="tags"><li>Excel</li><li>Macros</li><li>VBA</li></ul>
+      </li>
+      <li class="card">
+        <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+        <h3>Dados em sistemas integrados</h3>
+        <p>Faço a entrada de dados e notas fiscais em SAP e WMS e alinho processos com clientes e áreas internas.</p>
+        <ul class="tags"><li>SAP</li><li>WMS</li><li>Key User</li></ul>
+      </li>
+    </ul>
   </div></section>
 
   <section id="habilidades"><div class="wrap">
@@ -1017,6 +1083,49 @@ h2 { font-size: clamp(1.7rem, 4.4vw, 3.4rem); }
     });
     render(); bars();
   })();
+})();
+</script>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+
+  /* Anel que segue o mouse */
+  var ring = document.getElementById('ring'), rx = 0, ry = 0, tx = 0, ty = 0, live = false;
+  addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    tx = e.clientX; ty = e.clientY;
+    if (!live) { live = true; rx = tx; ry = ty; ring.classList.add('on'); requestAnimationFrame(follow); }
+    ring.classList.toggle('hot', !!(e.target.closest && e.target.closest('a, button, .card, input')));
+  }, { passive: true });
+  function follow() { rx += (tx - rx) * .18; ry += (ty - ry) * .18; ring.style.transform = 'translate(' + rx.toFixed(1) + 'px,' + ry.toFixed(1) + 'px)'; requestAnimationFrame(follow); }
+
+  /* Constelação de fundo em toda a página */
+  var cv = document.getElementById('space'), ctx = cv.getContext('2d'), W = 0, H = 0, pts = [], raf = 0, on = false;
+  function size() {
+    var d = Math.min(devicePixelRatio || 1, 1.5); W = innerWidth; H = innerHeight; cv.width = W * d; cv.height = H * d; ctx.setTransform(d, 0, 0, d, 0, 0);
+    var n = Math.max(18, Math.min(70, Math.round(W * H / 26000)));
+    pts = []; for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .28, vy: (Math.random() - .5) * .28, l: Math.random() < .18 });
+  }
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      var a = pts[i]; a.x += a.vx; a.y += a.vy;
+      if (a.x < -20) a.x = W + 20; if (a.x > W + 20) a.x = -20; if (a.y < -20) a.y = H + 20; if (a.y > H + 20) a.y = -20;
+      for (var j = i + 1; j < pts.length; j++) {
+        var b = pts[j], dx = a.x - b.x, dy = a.y - b.y, q = dx * dx + dy * dy;
+        if (q < 19600) { ctx.strokeStyle = 'rgba(120,150,255,' + (.22 * (1 - q / 19600)).toFixed(3) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      ctx.fillStyle = a.l ? 'rgba(185,252,1,.85)' : 'rgba(159,179,255,.7)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.l ? 2 : 1.4, 0, 6.2832); ctx.fill();
+    }
+    if (on) raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!on) { on = true; raf = requestAnimationFrame(frame); } }
+  function stop() { on = false; cancelAnimationFrame(raf); }
+  addEventListener('resize', size); size(); start();
+  document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
 })();
 </script>
 
