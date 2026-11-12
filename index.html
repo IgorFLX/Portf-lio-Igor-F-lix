@@ -8,6 +8,13 @@
 <meta property="og:title" content="Portfólio de Igor Félix">
 <meta property="og:description" content="Dados, automação e desenvolvimento. Projetos, habilidades, trajetória e contato.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://igorflx.github.io/Portf-lio-Igor-F-lix/">
+<meta property="og:image" content="https://igorflx.github.io/Portf-lio-Igor-F-lix/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Portfólio de Igor Félix</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@500;700;800&display=swap">
@@ -511,6 +518,10 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
 .pextra .pstats { border-top: 0; padding-top: 0; }
 .pextra .tags { margin-top: 0; padding-top: 0; }
 @media (max-width: 60rem) { .project.duo { grid-template-columns: minmax(0, 1fr); } }
+.project.duo.rev { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; }
+.project.duo .demo { margin: clamp(.75rem, 1.6vw, 1.25rem); container-type: inline-size; }
+@container (max-width: 46rem) { .c-opt { display: none; } .demo td, .demo th { padding: .6rem .55rem; } .demo table { font-size: .88rem; } .pill { white-space: normal; } }
+@media (max-width: 60rem) { .project.duo.rev { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
@@ -634,23 +645,20 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
           </ul>
         </div>
       </article>
-      <article class="project wide" data-reveal>
-        <div class="pbody split">
-          <div class="pcol">
-            <span class="pkind">Logística · Aplicação web</span>
-            <h3>Painel da Doca</h3>
-            <p>Sistema web que organiza a chegada de motoristas na doca. O motorista entra na fila pelo celular, o operador chama cada um para a doca certa e a gestão acompanha os tempos da operação em um dashboard. O servidor é em Python com FastAPI e banco PostgreSQL, e as telas são em HTML, CSS e JavaScript escritos à mão, sem framework. Está no ar, hospedado no Render.</p>
-          </div>
-          <div class="pcol">
-            <ul class="feats">
+      <article class="project duo rev" data-reveal>
+        <div class="pbody">
+          <span class="pkind">Logística · Aplicação web</span>
+          <h3>Painel da Doca</h3>
+          <p>Sistema web que organiza a chegada de motoristas na doca. O motorista entra na fila pelo celular, o operador chama cada um para a doca certa e a gestão acompanha os tempos da operação em um dashboard. O servidor é em Python com FastAPI e banco PostgreSQL, e as telas são em HTML, CSS e JavaScript escritos à mão, sem framework. Está no ar, hospedado no Render.</p>
+          <ul class="feats">
               <li>O motorista escaneia um QR Code e entra na fila pelo celular</li>
               <li>O operador chama, acompanha cada etapa (bolsão, a caminho, na doca, nota fiscal) e avisa pelo WhatsApp</li>
               <li>Dashboard com tempo por etapa, por fornecedor e por doca, meta de espera e exportação em CSV</li>
               <li>Histórico com busca e filtros, e aplicativo instalável (PWA) com notificações no celular</li>
             </ul>
-            <ul class="tags"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>PWA</li><li>Render</li></ul>
-          </div>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>PWA</li><li>Render</li></ul>
         </div>
+        <div class="pleft">
         <div class="demo" id="doca-demo">
           <div class="demo-bar">
             <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -696,6 +704,7 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
               <button type="submit" class="btn lime">Entrar na fila <span class="arr">→</span></button>
             </form>
           </div>
+        </div>
         </div>
       </article>
     </div>
