@@ -522,6 +522,47 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
 .project.duo .demo { margin: clamp(.75rem, 1.6vw, 1.25rem); container-type: inline-size; }
 @container (max-width: 46rem) { .c-opt { display: none; } .demo td, .demo th { padding: .6rem .55rem; } .demo table { font-size: .88rem; } .pill { white-space: normal; } }
 @media (max-width: 60rem) { .project.duo.rev { grid-template-columns: minmax(0, 1fr); } }
+
+/* Habilidades em blocos com anel de nível */
+.sk-filter { display: flex; flex-wrap: wrap; gap: .5rem; }
+.sk-filter button { font: 600 .88rem var(--font-body); color: var(--fg); background: rgba(10, 16, 48, .78); border: 1px solid var(--line); border-radius: 999px; padding: .5rem 1.1rem; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s, transform .2s; }
+.sk-filter button:hover { transform: translateY(-2px); border-color: rgba(185, 252, 1, .6); }
+.sk-filter button.on { background: var(--lime); color: var(--on-lime); border-color: var(--lime); }
+.sk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.75rem, 1fr)); gap: 1rem; }
+.sk { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; gap: .55rem; text-align: center; padding: 1.4rem .9rem 1.2rem; min-width: 0;
+  background: rgba(10, 16, 48, .78); border: 1px solid var(--line); border-radius: 20px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  transition: transform .35s var(--ease), border-color .35s, box-shadow .35s; }
+.sk::before { content: ""; position: absolute; inset: auto 0 0; height: 3px; background: linear-gradient(90deg, #0131CD, #B9FC01); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease); }
+.sk:hover { transform: translateY(-6px) scale(1.03); border-color: rgba(185, 252, 1, .6); box-shadow: 0 22px 50px -24px rgba(1, 60, 255, .95); }
+.sk:hover::before { transform: scaleX(1); }
+.sk-ring { position: relative; width: 5.25rem; height: 5.25rem; display: grid; place-items: center; }
+.sk-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.sk-ring circle { fill: none; stroke-width: 6; }
+.sk-b { stroke: var(--line); }
+.sk-p { stroke: #B9FC01; stroke-linecap: round; stroke-dasharray: 213.6; stroke-dashoffset: var(--o); filter: drop-shadow(0 0 5px rgba(185, 252, 1, .65)); transition: stroke-dashoffset 1.3s var(--ease) calc(var(--i, 0) * 55ms + 150ms); }
+.js [data-reveal]:not(.in) .sk-p { stroke-dashoffset: 213.6; }
+.sk.nolvl .sk-p { display: none; }
+.sk.nolvl .sk-b { stroke: var(--accent-text); stroke-dasharray: 5 7; stroke-width: 3; opacity: .7; }
+.sk:hover .sk-ring svg { animation: spin 6s linear infinite; }
+.sk-ring b { position: relative; font-family: var(--font-display); font-weight: 800; font-size: .95rem; letter-spacing: -.02em; white-space: nowrap; }
+.sk-n { font-weight: 600; font-size: .98rem; line-height: 1.25; }
+.sk-c { font-family: var(--font-mono); font-size: .68rem; color: var(--muted); line-height: 1.35; min-height: 1em; }
+.sk.hide { display: none; }
+.sk.show { animation: pop .5s var(--ease) backwards; animation-delay: calc(var(--j, 0) * 45ms); }
+.js .sk-grid[data-reveal].in .sk { animation: pop .7s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 55ms + 80ms); }
+.js .sk-grid[data-reveal].in .sk.show { animation: pop .5s var(--ease) backwards; animation-delay: calc(var(--j, 0) * 45ms); }
+.sk-legend { font-size: .85rem; color: var(--muted); max-width: 52rem; }
+
+/* WhatsApp */
+.wa-ico { width: 1.25rem; height: 1.25rem; flex: none; }
+.btn.wa { background: #25D366; color: #06281A; padding: .6rem 1.1rem; }
+.wa-float { position: fixed; z-index: 12; right: max(18px, env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); width: 3.5rem; height: 3.5rem; border-radius: 50%;
+  display: grid; place-items: center; background: #25D366; color: #06281A; box-shadow: 0 12px 30px -8px rgba(37, 211, 102, .7); transition: transform .25s var(--ease); animation: waPulse 2.6s ease-out infinite; }
+.wa-float .wa-ico { width: 1.8rem; height: 1.8rem; }
+.wa-float:hover { transform: scale(1.1) rotate(-6deg); }
+.wa-float:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 3px; }
+@keyframes waPulse { 0% { box-shadow: 0 12px 30px -8px rgba(37, 211, 102, .7), 0 0 0 0 rgba(37, 211, 102, .55); } 100% { box-shadow: 0 12px 30px -8px rgba(37, 211, 102, .7), 0 0 0 1.1rem rgba(37, 211, 102, 0); } }
+footer .wrap { padding-bottom: 5.5rem; }
 </style>
 </head>
 <body>
@@ -529,6 +570,7 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
 <div class="aurora a1" aria-hidden="true"></div>
 <div class="aurora a2" aria-hidden="true"></div>
 <div class="ring" id="ring" aria-hidden="true"></div>
+<a class="wa-float" href="https://wa.me/5511964187571?text=Ol%C3%A1%20Igor%2C%20vi%20seu%20portf%C3%B3lio." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp"><svg class="wa-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2z"/><path transform="translate(6.9 6.9) scale(.42)" stroke-width="4" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="glow" id="glow" aria-hidden="true"></div>
 
@@ -595,7 +637,7 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
   <div class="wrap stats-wrap">
     <ul class="stats" data-reveal>
       <li class="stat"><b data-count="2">2</b><span>projetos construídos</span></li>
-      <li class="stat"><b data-count="10">10</b><span>ferramentas no dia a dia</span></li>
+      <li class="stat"><b data-count="14">14</b><span>ferramentas no dia a dia</span></li>
       <li class="stat"><b data-count="4">4</b><span>cursos concluídos</span></li>
       <li class="stat"><b data-count="2022" data-plain="1">2022</b><span>início na logística</span></li>
     </ul>
@@ -752,35 +794,96 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
 
   <section id="habilidades"><div class="wrap">
     <div class="head" data-reveal><span class="label">Habilidades</span><h2>Ferramentas do dia a dia</h2></div>
-    <div class="skills-grid" data-reveal>
-      <div>
-        <h3>Dados e automação</h3>
-        <ul class="levels">
-          <li><span class="name">Excel, Macros e VBA</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">Power BI</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">Inteligência Artificial</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">Python</span><span class="lvl">iniciante</span><span class="meter" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></li>
-          <li><span class="name">SQL</span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Web e sistemas</h3>
-        <ul class="levels">
-          <li><span class="name">WMS</span><span class="lvl">experiente · Key User</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li>
-          <li><span class="name">SAP</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">HTML</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">CSS</span><span class="lvl">intermediário</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
-          <li><span class="name">C#</span></li>
-        </ul>
-      </div>
-      <div>
-        <h3>Idiomas</h3>
-        <ul class="levels">
-          <li><span class="name">Português</span><span class="lvl">nativo</span><span class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
-          <li><span class="name">Inglês</span><span class="lvl">básico</span><span class="meter" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></li>
-        </ul>
-      </div>
+    <div class="sk-filter" role="group" aria-label="Filtrar habilidades" data-reveal>
+      <button type="button" class="on" data-f="all" aria-pressed="true">Todas</button>
+      <button type="button" data-f="dados" aria-pressed="false">Dados e automação</button>
+      <button type="button" data-f="web" aria-pressed="false">Desenvolvimento</button>
+      <button type="button" data-f="sist" aria-pressed="false">Sistemas logísticos</button>
+      <button type="button" data-f="idioma" aria-pressed="false">Idiomas</button>
     </div>
+    <ul class="sk-grid" id="sk-grid" data-reveal>
+      <li class="sk" data-c="dados" style="--i:0;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>XL</b></span>
+        <span class="sk-n">Excel, Macros e VBA</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk" data-c="dados" style="--i:1;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>BI</b></span>
+        <span class="sk-n">Power BI</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk" data-c="dados" style="--i:2;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>IA</b></span>
+        <span class="sk-n">Inteligência Artificial</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk" data-c="dados" style="--i:3;--o:160.2">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>Py</b></span>
+        <span class="sk-n">Python</span>
+        <span class="sk-c">iniciante</span>
+      </li>
+      <li class="sk nolvl" data-c="dados" style="--i:4;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>SQL</b></span>
+        <span class="sk-n">SQL</span>
+        <span class="sk-c">usado no Painel da Doca</span>
+      </li>
+      <li class="sk nolvl" data-c="dados" style="--i:5;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>PG</b></span>
+        <span class="sk-n">PostgreSQL</span>
+        <span class="sk-c">usado no Painel da Doca</span>
+      </li>
+      <li class="sk nolvl" data-c="web" style="--i:6;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>JS</b></span>
+        <span class="sk-n">JavaScript</span>
+        <span class="sk-c">usado nos dois projetos</span>
+      </li>
+      <li class="sk nolvl" data-c="web" style="--i:7;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>API</b></span>
+        <span class="sk-n">FastAPI</span>
+        <span class="sk-c">usado no Painel da Doca</span>
+      </li>
+      <li class="sk nolvl" data-c="web" style="--i:8;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>3D</b></span>
+        <span class="sk-n">Three.js</span>
+        <span class="sk-c">usado no Operation Viewer</span>
+      </li>
+      <li class="sk" data-c="web" style="--i:9;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>&lt;/&gt;</b></span>
+        <span class="sk-n">HTML</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk" data-c="web" style="--i:10;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>{ }</b></span>
+        <span class="sk-n">CSS</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk nolvl" data-c="web" style="--i:11;--o:213.6">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>C#</b></span>
+        <span class="sk-n">C#</span>
+        <span class="sk-c"></span>
+      </li>
+      <li class="sk" data-c="sist" style="--i:12;--o:53.4">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>WMS</b></span>
+        <span class="sk-n">WMS</span>
+        <span class="sk-c">experiente · Key User</span>
+      </li>
+      <li class="sk" data-c="sist" style="--i:13;--o:106.8">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>SAP</b></span>
+        <span class="sk-n">SAP</span>
+        <span class="sk-c">intermediário</span>
+      </li>
+      <li class="sk" data-c="idioma" style="--i:14;--o:0.0">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>PT</b></span>
+        <span class="sk-n">Português</span>
+        <span class="sk-c">nativo</span>
+      </li>
+      <li class="sk" data-c="idioma" style="--i:15;--o:160.2">
+        <span class="sk-ring"><svg viewBox="0 0 80 80" aria-hidden="true"><circle class="sk-b" cx="40" cy="40" r="34"/><circle class="sk-p" cx="40" cy="40" r="34"/></svg><b>EN</b></span>
+        <span class="sk-n">Inglês</span>
+        <span class="sk-c">básico</span>
+      </li>
+    </ul>
+    <p class="sk-legend" data-reveal>O anel mostra o nível: um quarto para iniciante ou básico, metade para intermediário, três quartos para experiente e completo para nativo. Anel tracejado indica ferramenta usada em projeto, sem nível declarado.</p>
   </div></section>
 
   <section id="trajetoria"><div class="wrap">
@@ -842,10 +945,11 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
     <div class="contact" data-reveal>
       <span class="label">Contato</span>
       <h2>Vamos conversar?</h2>
-      <p>Busco oportunidades na área de tecnologia, em dados, automação e desenvolvimento. Fale comigo por e-mail, telefone ou LinkedIn.</p>
+      <p>Busco oportunidades na área de tecnologia, em dados, automação e desenvolvimento. Fale comigo por e-mail, WhatsApp ou LinkedIn.</p>
       <ul class="contact-list">
         <li><span class="k">E-mail</span><span class="v" id="email">igorflxadr1956@gmail.com</span><button class="btn lime copy" id="copy-email" type="button">Copiar</button></li>
         <li><span class="k">Telefone</span><span class="v" id="tel">(11) 96418-7571</span><button class="btn lime copy" id="copy-tel" type="button">Copiar</button></li>
+        <li><span class="k">WhatsApp</span><a class="btn wa" href="https://wa.me/5511964187571?text=Ol%C3%A1%20Igor%2C%20vi%20seu%20portf%C3%B3lio." target="_blank" rel="noopener"><svg class="wa-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2z"/><path transform="translate(6.9 6.9) scale(.42)" stroke-width="4" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Chamar no WhatsApp</a></li>
         <li><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/igorflx" target="_blank" rel="noopener">linkedin.com/in/igorflx</a></li>
       </ul>
     </div>
@@ -1142,6 +1246,24 @@ h2 { background: linear-gradient(92deg, #FFFFFF 20%, #9FB3FF 100%); -webkit-back
   function stop() { on = false; cancelAnimationFrame(raf); }
   addEventListener('resize', size); size(); start();
   document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+})();
+</script>
+
+<script>
+(function () {
+  var box = document.querySelector('.sk-filter'), grid = document.getElementById('sk-grid'); if (!box || !grid) return;
+  var btns = [].slice.call(box.querySelectorAll('button')), tiles = [].slice.call(grid.querySelectorAll('.sk'));
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f'), j = 0;
+      btns.forEach(function (o) { o.classList.toggle('on', o === b); o.setAttribute('aria-pressed', o === b); });
+      tiles.forEach(function (t) {
+        var ok = f === 'all' || t.getAttribute('data-c') === f;
+        t.classList.remove('show'); t.classList.toggle('hide', !ok);
+        if (ok) { t.style.setProperty('--j', j++); void t.offsetWidth; t.classList.add('show'); }
+      });
+    });
+  });
 })();
 </script>
 
