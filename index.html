@@ -567,6 +567,9 @@ footer .wrap { padding-bottom: 5.5rem; }
 .shot.og { min-height: 0; aspect-ratio: 1200 / 630; background: #040717; }
 .shot.og img { object-fit: cover; object-position: center; }
 .project.duo.mid .frames { background: #040717; }
+/* DESFOQUE-OV: imagens do Operation Viewer desfocadas para gravação; apague este bloco para voltar ao normal */
+.projects > .project:first-child .frames img { filter: blur(9px); transform: scale(1.06); }
+.projects > .project:first-child:hover .frames img { transform: scale(1.06); }
 </style>
 </head>
 <body>
