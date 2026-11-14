@@ -568,8 +568,8 @@ footer .wrap { padding-bottom: 5.5rem; }
 .shot.og img { object-fit: cover; object-position: center; }
 .project.duo.mid .frames { background: #040717; }
 /* DESFOQUE-OV: imagens do Operation Viewer desfocadas para gravação; apague este bloco para voltar ao normal */
-.projects > .project:first-child .frames img { filter: blur(9px); transform: scale(1.06); }
-.projects > .project:first-child:hover .frames img { transform: scale(1.06); }
+.projects > .pj-slide:first-child .frames img { filter: blur(9px); transform: scale(1.06); }
+.projects > .pj-slide:first-child .project:hover .frames img { transform: scale(1.06); }
 .project.pizza .frames { background: #121110; }
 
 /* Carrossel de projetos */
@@ -585,31 +585,31 @@ footer .wrap { padding-bottom: 5.5rem; }
 .projects { position: relative; flex-direction: row; align-items: flex-start; gap: 1.5rem; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain;
   padding: 10px 2px 36px; margin-bottom: -36px; transition: height .45s var(--ease); }
 .projects::-webkit-scrollbar { display: none; }
-.projects > .project { flex: 0 0 100%; scroll-snap-align: center; scroll-snap-stop: always; }
+.projects > .pj-slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: center; scroll-snap-stop: always; perspective: 1800px; }
 
 /* Animação do carrossel */
 .pj-prog { height: 3px; border-radius: 3px; background: var(--line); overflow: hidden; }
 .pj-prog i { display: block; width: 25%; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #0131CD, #B9FC01); box-shadow: 0 0 12px rgba(185, 252, 1, .7); will-change: transform; }
-.projects { perspective: 1800px; }
-.js .projects > .project[data-reveal] { opacity: calc(1 - var(--a, 0) * .5); transition: border-color .35s, box-shadow .35s; transform-origin: center; will-change: transform, opacity;
-  transform: translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); filter: blur(calc(var(--a, 0) * 4px)); }
-.js .projects > .project[data-reveal]:hover { transform: translateY(-4px) translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); }
-.js .projects > .project.wide:hover, .js .projects > .project.duo:hover { transform: translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); }
-.projects > .project.pj-on .pbody > * { animation: pjText .65s var(--ease) backwards; }
-.projects > .project.pj-on .pbody > :nth-child(1) { animation-delay: .04s; }
-.projects > .project.pj-on .pbody > :nth-child(2) { animation-delay: .09s; }
-.projects > .project.pj-on .pbody > :nth-child(3) { animation-delay: .14s; }
-.projects > .project.pj-on .pbody > :nth-child(4) { animation-delay: .19s; }
-.projects > .project.pj-on .pbody > :nth-child(5) { animation-delay: .24s; }
-.projects > .project.pj-on .pbody > :nth-child(6) { animation-delay: .29s; }
-.projects > .project.pj-on .pleft { animation: pjShot .8s var(--ease) backwards; }
-.projects > .project.pj-on::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: linear-gradient(90deg, rgba(185, 252, 1, 0), #B9FC01, rgba(185, 252, 1, 0)); animation: pjScan 1.1s var(--ease) backwards; opacity: 0; }
+
+.js .projects .project[data-reveal] { opacity: calc(1 - var(--a, 0)); transition: border-color .35s, box-shadow .35s; transform-origin: center;
+  transform: translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); }
+.js .projects .project[data-reveal]:hover { transform: translateY(-4px) translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); }
+.js .projects .project.wide:hover, .js .projects .project.duo:hover { transform: translateX(calc(var(--d, 0) * 6%)) rotateY(calc(var(--d, 0) * -22deg)) scale(calc(1 - var(--a, 0) * .14)); }
+.projects > .pj-slide.pj-on > .project .pbody > * { animation: pjText .65s var(--ease) backwards; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(1) { animation-delay: .04s; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(2) { animation-delay: .09s; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(3) { animation-delay: .14s; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(4) { animation-delay: .19s; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(5) { animation-delay: .24s; }
+.projects > .pj-slide.pj-on > .project .pbody > :nth-child(6) { animation-delay: .29s; }
+.projects > .pj-slide.pj-on > .project .pleft { animation: pjShot .8s var(--ease) backwards; }
+.projects > .pj-slide.pj-on > .project::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; z-index: 2; background: linear-gradient(90deg, rgba(185, 252, 1, 0), #B9FC01, rgba(185, 252, 1, 0)); animation: pjScan 1.1s var(--ease) backwards; opacity: 0; }
 @keyframes pjText { from { opacity: .15; transform: translateX(40px); } }
 @keyframes pjShot { from { transform: scale(.93); } }
 @keyframes pjScan { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(26rem); } }
 .pj-tabs button.on { animation: pjTab .45s var(--ease); }
 @keyframes pjTab { 0% { transform: scale(.9); } 60% { transform: scale(1.06); } }
-@media (prefers-reduced-motion: reduce) { .js .projects > .project[data-reveal] { transform: none; filter: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .js .projects .project[data-reveal] { transform: none; filter: none; opacity: 1; } }
 </style>
 </head>
 <body>
@@ -707,7 +707,7 @@ footer .wrap { padding-bottom: 5.5rem; }
     </div>
     <div class="pj-prog" aria-hidden="true"><i id="pj-bar"></i></div>
     <div class="projects" id="pj-track">
-      <article class="project duo" data-reveal>
+      <div class="pj-slide"><article class="project duo" data-reveal>
         <div class="pleft">
         <div class="shot tabs">
           <div class="frames">
@@ -747,8 +747,8 @@ footer .wrap { padding-bottom: 5.5rem; }
             <li>Inventário com acuracidade e importação de saldo com prévia antes de aplicar</li>
           </ul>
         </div>
-      </article>
-      <article class="project duo rev" data-reveal>
+      </article></div>
+      <div class="pj-slide"><article class="project duo rev" data-reveal>
         <div class="pbody">
           <span class="pkind">Logística · Aplicação web</span>
           <h3>Painel da Doca</h3>
@@ -809,8 +809,8 @@ footer .wrap { padding-bottom: 5.5rem; }
           </div>
         </div>
         </div>
-      </article>
-      <article class="project duo mid pizza" data-reveal>
+      </article></div>
+      <div class="pj-slide"><article class="project duo mid pizza" data-reveal>
         <div class="pleft">
         <div class="shot tabs">
           <div class="frames">
@@ -842,8 +842,8 @@ footer .wrap { padding-bottom: 5.5rem; }
           </ul>
           <ul class="tags"><li>React</li><li>Three.js</li><li>React Three Fiber</li><li>JavaScript</li><li>Vite</li><li>IA</li></ul>
         </div>
-      </article>
-      <article class="project duo mid" data-reveal>
+      </article></div>
+      <div class="pj-slide"><article class="project duo mid" data-reveal>
         <div class="pleft">
           <div class="shot tabs">
           <div class="frames">
@@ -875,7 +875,7 @@ footer .wrap { padding-bottom: 5.5rem; }
           <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Canvas</li><li>GitHub Pages</li><li>IA</li></ul>
           <a class="plink" href="https://github.com/IgorFLX/Portf-lio-Igor-F-lix" target="_blank" rel="noopener">Ver o código no GitHub <span class="arr">→</span></a>
         </div>
-      </article>
+      </article></div>
     </div>
   </div></section>
 
@@ -1402,7 +1402,7 @@ footer .wrap { padding-bottom: 5.5rem; }
   var bar = document.getElementById('pj-bar');
   function paint() {
     var x = track.scrollLeft + slides[0].offsetLeft, w = track.clientWidth || 1;
-    slides.forEach(function (s) { var d = Math.max(-1, Math.min(1, (s.offsetLeft - x) / (w + 24))); s.style.setProperty('--d', d.toFixed(3)); s.style.setProperty('--a', Math.abs(d).toFixed(3)); });
+    slides.forEach(function (s) { var d = Math.max(-1, Math.min(1, (s.offsetLeft - x) / (w + 24))); if (Math.abs(d) < .05) d = 0; s.style.setProperty('--d', d.toFixed(3)); s.style.setProperty('--a', Math.abs(d).toFixed(3)); });
     var step = slides.length > 1 ? slides[1].offsetLeft - slides[0].offsetLeft : w;
     if (bar) bar.style.transform = 'translateX(' + (track.scrollLeft / step * 100).toFixed(2) + '%)';
   }
